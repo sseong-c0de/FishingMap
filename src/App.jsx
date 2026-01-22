@@ -1,9 +1,9 @@
-import "./App.css";
-
+import Layout from "./layout/Layout";
+import "./styles/reset.scss";
 function App() {
   return (
     <>
-      <div>피싱맵 시작준비</div>
+      <Layout></Layout>
     </>
   );
 }
