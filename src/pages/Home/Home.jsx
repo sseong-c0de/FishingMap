@@ -6,14 +6,14 @@ function Home() {
     <div className={styles.container}>
       <div className={styles.h2Wrap}>
         <h2>안녕하세요.</h2>
-        <span className={styles.desc}>오늘의 바다를 확인해보세요.</span>
+        <p className={styles.desc}>오늘의 바다를 확인해보세요.</p>
       </div>
-      <div className={styles.SerchBox}>
+      <div className={styles.searchBox}>
         <Search></Search>
       </div>
       <div className={styles.linkContainer}>
         <Link to className={styles.linkCard}>
-          <span>물떄 확인</span>
+          <span>물때 확인</span>
         </Link>
         <Link to className={styles.linkCard}>
           <span>낚시 포인트</span>

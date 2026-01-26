@@ -6,8 +6,9 @@ function Serch() {
         <span className={styles.enter}>←</span>
         <input
           type="search"
-          placeholder="어디로갈까요?"
-          className={styles.serchInput}
+          id="search"
+          placeholder="어디로 갈까요?"
+          className={styles.searchInput}
         ></input>
       </div>
     </>

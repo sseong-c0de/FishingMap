@@ -1,3 +1,4 @@
+import BackButton from "../components/BackButton/BackButton";
 import Drawer from "../components/Drawer/Drawer";
 import Header from "../components/Header/Header";
 import Search from "../components/Search/Search";
@@ -11,12 +12,11 @@ function Layout() {
   return (
     <>
       <Header></Header>
-      {/* <Drawer></Drawer>
-      <Search></Search> */}
+      {/* <Drawer></Drawer> */}
       <main className={styles.appMain}>
         {/* <Home></Home> */}
-        {/* <TideSearch></TideSearch>
-        <TideCheck></TideCheck> */}
+        {/* <TideSearch></TideSearch> */}
+        {/* <TideCheck></TideCheck> */}
         <BanSearch></BanSearch>
       </main>
     </>

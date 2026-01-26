@@ -1,3 +1,33 @@
-.container {
-  display: flex;
+.header {
+  margin-top: 10px;
+  width: 100%;
+  .container {
+    display: flex;
+    width: 91.11%;
+    height: 50px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    .back {
+    }
+    .titleWrap {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .openBtn {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      span {
+        display: block;
+        width: 100%;
+        height: 5px;
+        background: #d9d9d9;
+      }
+    }
+  }
 }
