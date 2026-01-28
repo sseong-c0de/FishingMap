@@ -8,17 +8,17 @@ import Home from "../pages/Home/Home";
 import TideCheck from "../pages/TIdeCheck/TideCheck";
 import TideSearch from "../pages/TideSearch/TideSearch";
 import styles from "./Layout.module.scss";
-import { fetchTide } from "../api/tide";
+// import { fetchTide } from "../api/tide";
 
 function Layout() {
-  const clicklog = async () => {
-    try {
-      const result = await fetchTide();
-      console.log("최종 result", result);
-    } catch (e) {
-      console.log("에러", e);
-    }
-  };
+  // const clicklog = async () => {
+  //   try {
+  //     const result = await fetchTide();
+  //     console.log("최종 result", result);
+  //   } catch (e) {
+  //     console.log("에러", e);
+  //   }
+  // };
   return (
     <>
       <Header></Header>
@@ -29,14 +29,14 @@ function Layout() {
           <Route path="tide" element={<TideSearch />} />
           <Route path="ban" element={<BanSearch />} />
         </Routes>
-        <button
+        {/* <button
           type="button"
           onClick={() => {
             clicklog();
           }}
         >
           11111
-        </button>
+        </button> */}
         {/* <TideCheck></TideCheck> */}
       </main>
     </>
