@@ -4,8 +4,9 @@ export async function fetchTide() {
     serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
     type: "json",
     gubun: "갯바위",
-    pageNo: 1,
-    numOfRows: 30,
+    // pageNo: 1,
+    numOfRows: 50,
+    // placeName: "",
   };
   const url = new URL(baseUrl, window.location.origin);
   Object.entries(params).forEach(([key, value]) => {

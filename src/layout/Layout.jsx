@@ -26,8 +26,9 @@ function Layout() {
       <main className={styles.appMain}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="tide" element={<TideSearch />} />
-          <Route path="ban" element={<BanSearch />} />
+          <Route path="/tide" element={<TideSearch />} />
+          <Route path="/tide/check" element={<TideCheck />} />
+          <Route path="/ban" element={<BanSearch />} />
         </Routes>
         {/* <button
           type="button"

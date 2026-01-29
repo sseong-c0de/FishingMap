@@ -1,8 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import styles from "./TideCheck.module.scss";
 import MoreBtn from "../../components/MoreBtn/MoreBtn";
 import tideList from "../../data/tideData";
+import { useEffect, useState } from "react";
+import { fetchTide } from "../../api/tide";
 function TideCheck() {
+  const [params] = useSearchParams();
+  const place = params.get("place");
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    const load = async () => {
+      const data = await fetchTide();
+      const items = data.body.items.item;
+      const filterItems = items.filter((item) => {
+        return item.seafsPstnNm === place;
+      });
+      setRows(filterItems);
+    };
+    load();
+  }, [place]);
+  useEffect(() => {
+    console.log(rows);
+  }, [rows]);
   return (
     <div className={styles.container}>
       {tideList.map((item, id) => {

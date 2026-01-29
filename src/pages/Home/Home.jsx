@@ -12,7 +12,7 @@ function Home() {
         <Search></Search>
       </div>
       <div className={styles.linkContainer}>
-        <Link to="/tide" className={styles.linkCard}>
+        <Link to="tide" className={styles.linkCard}>
           <span>물때 확인</span>
         </Link>
         <Link to className={styles.linkCard}>

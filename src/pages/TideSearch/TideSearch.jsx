@@ -33,18 +33,16 @@ function TideSearch() {
   return (
     <div className={styles.container}>
       <div className={styles.searchBox}>
-        <Search></Search>
+        <Search placeList={placeList} />
       </div>
-      <div className={styles.recentSearch}></div>
-      <div className={styles.resultBox}></div>
-      <MoreBtn></MoreBtn>
-      <button
+      {/* <MoreBtn></MoreBtn> */}
+      {/* <button
         onClick={() => {
           console.log(placeList);
         }}
       >
         123131231313123123
-      </button>
+      </button> */}
     </div>
   );
 }
