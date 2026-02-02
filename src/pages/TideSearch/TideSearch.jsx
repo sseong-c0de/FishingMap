@@ -9,7 +9,7 @@ function TideSearch() {
   // const log = () => {
   //   console.log(placeList);
   // };
-  // api받아오기
+
   useEffect(() => {
     const data = async () => {
       try {
@@ -22,6 +22,19 @@ function TideSearch() {
     };
     data();
   }, []);
+  // api받아오기
+  // useEffect(() => {
+  //   const data = async () => {
+  //     try {
+  //       const result = await fetchTide();
+  //       setTidedata(result?.body?.items?.item ?? []);
+  //       console.log("result", result);
+  //     } catch (e) {
+  //       console.log("에러", e);
+  //     }
+  //   };
+  //   data();
+  // }, []);
   useEffect(() => {
     if (tideData.length === 0) return;
     const name = tideData.map((item) => {

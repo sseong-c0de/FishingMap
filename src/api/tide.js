@@ -1,12 +1,10 @@
-export async function fetchTide() {
+export async function fetchTide(reqDate) {
   const baseUrl = "/data-go/1192136/fcstFishingv2/GetFcstFishingApiServicev2";
   const params = {
     serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
     type: "json",
     gubun: "갯바위",
-    // pageNo: 1,
-    numOfRows: 50,
-    // placeName: "",
+    reqDate,
   };
   const url = new URL(baseUrl, window.location.origin);
   Object.entries(params).forEach(([key, value]) => {
