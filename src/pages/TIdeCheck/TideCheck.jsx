@@ -45,7 +45,7 @@ function TideCheck() {
                 <span>17:24</span>
               </p>
               <Link to>
-                <span>자세히 보기</span>
+                <span className={styles.link}>자세히 보기</span>
               </Link>
             </div>
           </div>
