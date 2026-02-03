@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Search({ placeList = [] }) {
   const [inputKeyword, setInputKeyword] = useState("");
   const filterPlace =
-    inputKeyword.length >= 2
+    inputKeyword.length >= 1
       ? placeList.filter((item) => item.includes(inputKeyword)).slice(0, 5)
       : [];
   const openBtn = filterPlace.length > 0;
@@ -37,7 +37,7 @@ function Search({ placeList = [] }) {
             })}
           </div>
         ) : null}
-        <MoreBtn />
+        {/* <MoreBtn /> */}
       </div>
     </>
   );

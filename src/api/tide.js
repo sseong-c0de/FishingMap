@@ -1,19 +1,21 @@
-function todayDate() {
-  const d = new Date();
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}${m}${day}`;
-}
+// 오늘 날짜 계산
+// function todayDate() {
+//   const d = new Date();
+//   const y = d.getFullYear();
+//   const m = String(d.getMonth() + 1).padStart(2, "0");
+//   const day = String(d.getDate()).padStart(2, "0");
+//   return `${y}${m}${day}`;
+// }
 
-export async function fetchTide(reqDate = todayDate()) {
+export async function fetchTide(pageNo = "1") {
   const baseUrl = "/data-go/1192136/fcstFishingv2/GetFcstFishingApiServicev2";
   const params = {
     serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
     type: "json",
     gubun: "갯바위",
-    reqDate,
     numOfRows: "300",
+    pageNo,
+    exclude: "lat,lot",
   };
 
   const url = new URL(baseUrl, window.location.origin);
@@ -31,28 +33,36 @@ export async function fetchTide(reqDate = todayDate()) {
     return { raw: text };
   }
 }
-
-function getNext7Days() {
-  const start = new Date();
-  return Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(start);
-    d.setDate(d.getDate() + i);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-
-    return `${y}${m}${day}`;
-  });
+export function nowDate() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
 }
 
-export async function fetchTide7Days() {
-  const dates = getNext7Days();
-  const results = await Promise.all(
-    dates.map(async (reqDate) => {
-      const data = await fetchTide(reqDate);
-      return { reqDate, data };
-    }),
-  );
+// 1주일계산
+// function getNext7Days() {
+//   const start = new Date();
+//   return Array.from({ length: 7 }, (_, i) => {
+//     const d = new Date(start);
+//     d.setDate(d.getDate() + i);
+//     const y = d.getFullYear();
+//     const m = String(d.getMonth() + 1).padStart(2, "0");
+//     const day = String(d.getDate()).padStart(2, "0");
 
-  return results;
-}
+//     return `${y}${m}${day}`;
+//   });
+// }
+// 1주일치 데이터받기
+// export async function fetchTide7Days() {
+//   const dates = getNext7Days();
+//   const results = await Promise.all(
+//     dates.map(async (reqDate) => {
+//       const data = await fetchTide(reqDate);
+//       return { reqDate, data };
+//     })
+//   );
+
+//   return results;
+// }
