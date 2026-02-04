@@ -24,20 +24,23 @@ function TideSearch() {
 
   useEffect(() => {
     async function data() {
-      let pageNo = 1;
-      let today = nowDate();
-      const all = [];
-      while (pageNo <= 3) {
-        const result = await fetchTide(String(pageNo));
-        const items = result?.body?.items?.item ?? [];
-        if (items.length === 0) break;
-        if (items[0].predcYmd !== today) break;
-        all.push(...items);
-        pageNo++;
+      try {
+        let pageNo = 1;
+        const today = nowDate();
+        const all = [];
+        while (pageNo <= 3) {
+          const result = await fetchTide(String(pageNo));
+          const items = result?.body?.items?.item ?? [];
+          if (items.length === 0) break;
+          if (items[0].predcYmd !== today) break;
+          all.push(...items.filter((item) => item.predcYmd === today));
+          pageNo++;
+        }
+        setTidedata(all);
+        console.log(all);
+      } catch (error) {
+        console.error("물때 데이터 로딩 실패:", error);
       }
-      const filterAll = all.filter((item) => item.predcYmd === today);
-      setTidedata(filterAll);
-      console.log(filterAll);
     }
     data();
   }, []);

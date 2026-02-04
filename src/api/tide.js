@@ -1,12 +1,3 @@
-// 오늘 날짜 계산
-// function todayDate() {
-//   const d = new Date();
-//   const y = d.getFullYear();
-//   const m = String(d.getMonth() + 1).padStart(2, "0");
-//   const day = String(d.getDate()).padStart(2, "0");
-//   return `${y}${m}${day}`;
-// }
-
 export async function fetchTide(pageNo = "1") {
   const baseUrl = "/data-go/1192136/fcstFishingv2/GetFcstFishingApiServicev2";
   const params = {
@@ -33,12 +24,22 @@ export async function fetchTide(pageNo = "1") {
     return { raw: text };
   }
 }
-export function nowDate() {
-  const d = new Date();
+
+function formatDate(d) {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
   const day = String(d.getDate()).padStart(2, "0");
   return `${y}-${m}-${day}`;
+}
+
+export function nowDate() {
+  return formatDate(new Date());
+}
+
+export function endDate(days = 6) {
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  return formatDate(d);
 }
 
 // 1주일계산

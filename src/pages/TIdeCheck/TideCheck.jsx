@@ -3,7 +3,7 @@ import styles from "./TideCheck.module.scss";
 import MoreBtn from "../../components/MoreBtn/MoreBtn";
 
 import { useEffect, useState } from "react";
-import { fetchTide, nowDate } from "../../api/tide";
+import { fetchTide, nowDate, endDate } from "../../api/tide";
 function TideCheck() {
   const [params] = useSearchParams();
   const place = params.get("place");
@@ -24,15 +24,18 @@ function TideCheck() {
       if (!place) return;
       let pageNo = 1;
       const today = nowDate();
+      const endDay = endDate();
       const all = [];
-      while (pageNo <= 3) {
+      while (pageNo <= 10) {
         const result = await fetchTide(String(pageNo));
         const items = result?.body?.items?.item ?? [];
         const filterItems = items.filter((item) => {
-          return item.seafsPstnNm === place && item.predcYmd === today;
+          return item.seafsPstnNm === place;
         });
-        if (items[0].predcYmd !== today) break;
+        // if (items[0].predcYmd !== today) break;
         if (items.length === 0) break;
+        const hasEndDay = items.some((item) => item?.predcYmd === endDay);
+        if (hasEndDay) break;
         all.push(...filterItems);
         pageNo++;
       }
@@ -40,9 +43,6 @@ function TideCheck() {
     }
     load();
   }, [place]);
-  // useEffect(() => {
-  //   console.log(rows);
-  // }, [rows]);
   return (
     <div className={styles.container}>
       {rows.map((item, id) => {
