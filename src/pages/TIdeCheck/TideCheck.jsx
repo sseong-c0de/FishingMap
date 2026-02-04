@@ -1,24 +1,13 @@
 import { Link, useSearchParams } from "react-router-dom";
 import styles from "./TideCheck.module.scss";
 import MoreBtn from "../../components/MoreBtn/MoreBtn";
-
 import { useEffect, useState } from "react";
 import { fetchTide, nowDate, endDate } from "../../api/tide";
+import TideModal from "../../components/TideModal/TideModal";
 function TideCheck() {
   const [params] = useSearchParams();
   const place = params.get("place");
   const [rows, setRows] = useState([]);
-  // useEffect(() => {
-  //   const load = async () => {
-  //     const data = await fetchTide();
-  //     const items = data.body.items.item;
-  //     const filterItems = items.filter((item) => {
-  //       return item.seafsPstnNm === place;
-  //     });
-  //     setRows(filterItems);
-  //   };
-  //   load();
-  // }, [place]);
   useEffect(() => {
     async function load() {
       if (!place) return;
@@ -29,17 +18,25 @@ function TideCheck() {
       while (pageNo <= 10) {
         const result = await fetchTide(String(pageNo));
         const items = result?.body?.items?.item ?? [];
-        const filterItems = items.filter((item) => {
-          return item.seafsPstnNm === place;
-        });
-        // if (items[0].predcYmd !== today) break;
         if (items.length === 0) break;
-        const hasEndDay = items.some((item) => item?.predcYmd === endDay);
-        if (hasEndDay) break;
-        all.push(...filterItems);
+        const placeItems = items.filter((item) => item.seafsPstnNm === place);
+        const rangedItems = placeItems.filter(
+          (item) => item.predcYmd >= today && item.predcYmd <= endDay
+        );
+        all.push(...rangedItems);
+        const reachedEndDay = rangedItems.some(
+          (item) => item.predcYmd === endDay
+        );
+        if (reachedEndDay) break;
         pageNo++;
       }
-      setRows(all);
+      const hasDate = new Set();
+      const oneDate = all.filter((item)=>{
+        const firstDate = !hasDate.has(item.predcYmd);
+        hasDate.add(item.predcYmd);
+        return firstDate;
+      })
+      setRows(oneDate);
     }
     load();
   }, [place]);
@@ -57,9 +54,7 @@ function TideCheck() {
             <div className={styles.rowList}>
               <p>
                 <span>{item.predcYmd.slice(5, 10)}</span>
-                <span>{item.predcNoonSeCd}</span>
               </p>
-
               <p>
                 <span>{item.tdlvHrCn}</span>
                 <span>{item.tdlvHrScr}점</span>
@@ -72,37 +67,14 @@ function TideCheck() {
                 <span>{item.maxArtmp}</span>
                 <span>{item.minArtmp}</span>
               </p>
-              <Link to>
-                <span className={styles.link}>자세히 보기</span>
-              </Link>
+              <button>
+                <span className={styles.modalBtn}>자세히 보기</span>
+              </button>
             </div>
           </div>
         );
       })}
-      {/* <div className={styles.row}>
-        <div className={styles.rowHeader}>
-          <span>날짜</span>
-          <span>날씨</span>
-          <span>만조</span>
-          <span>간조</span>
-        </div>
-        <div className={styles.rowList}>
-          <span>21(수)</span>
-          <span>맑음</span>
-          <p>
-            <span>06:24</span>
-            <span>17:24</span>
-          </p>
-          <p>
-            <span>06:24</span>
-            <span>17:24</span>
-          </p>
-          <Link to>
-            <span>자세히 보기</span>
-          </Link>
-        </div>
-      </div> */}
-      <MoreBtn />
+      <TideModal/>
     </div>
   );
 }

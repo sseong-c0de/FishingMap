@@ -37,7 +37,6 @@ function TideSearch() {
           pageNo++;
         }
         setTidedata(all);
-        console.log(all);
       } catch (error) {
         console.error("물때 데이터 로딩 실패:", error);
       }

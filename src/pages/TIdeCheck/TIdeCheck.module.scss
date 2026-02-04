@@ -14,8 +14,10 @@
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       align-items: center;
       font-size: 14px;
-      .link {
+      .modalBtn {
         font-size: 16px;
+        color:#fff;
+        cursor: pointer;
       }
     }
     .rowList {
