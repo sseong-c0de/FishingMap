@@ -28,7 +28,7 @@ function Search({ placeList = [] }) {
             {filterPlace.map((item, key) => {
               return (
                 <Link
-                  to={`/tide/check?place=${encodeURIComponent(item)}`}
+                  to={`/tide/score?place=${encodeURIComponent(item)}`}
                   key={item}
                 >
                   {item}

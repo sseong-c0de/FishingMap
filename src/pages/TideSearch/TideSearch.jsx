@@ -6,21 +6,6 @@ import { fetchTide, nowDate } from "../../api/tide.js";
 function TideSearch() {
   const [tideData, setTidedata] = useState([]);
   const [placeList, setPlaceList] = useState([]);
-  // const log = () => {
-  //   console.log(placeList);
-  // };
-  // useEffect(() => {
-  //   const data = async () => {
-  //     try {
-  //       const result = await fetchTide();
-  //       setTidedata(result?.body?.items?.item ?? []);
-  //       console.log("result", result);
-  //     } catch (e) {
-  //       console.log("에러", e);
-  //     }
-  //   };
-  //   data();
-  // }, []);
 
   useEffect(() => {
     async function data() {
@@ -43,26 +28,7 @@ function TideSearch() {
     }
     data();
   }, []);
-  // api받아오기;
-  // useEffect(() => {
-  //   const data = async () => {
-  //     try {
-  //       const result = await fetchTide();
-  //       setTidedata(result?.body?.items?.item ?? []);
-  //       console.log("result", result);
-  //     } catch (e) {
-  //       console.log("에러", e);
-  //     }
-  //   };
-  //   data();
-  // }, []);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const week = await fetchTide7Days();
-  //     console.log(week);
-  //   })();
-  // }, []);
   useEffect(() => {
     if (tideData.length === 0) return;
     const name = tideData.map((item) => {

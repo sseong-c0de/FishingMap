@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
-import styles from "./TideCheck.module.scss";
+import styles from "./TideScore.module.scss";
 import MoreBtn from "../../components/MoreBtn/MoreBtn";
 import { useEffect, useState } from "react";
 import { fetchTide, nowDate, endDate } from "../../api/tide";
@@ -9,16 +9,18 @@ function TideCheck() {
   const [params] = useSearchParams();
   const place = params.get("place");
   const [rows, setRows] = useState([]);
-  const [clickData,setClickData] = useState([])
-  const [openModal,setOpenModal] = useState(false)
-  const [clickCode,setClickCode] = useState()
-  function propCode(){
-    const found = tideTimeCode.find((code)=>code.name === place);
-    setClickCode(found?.code ?? "")
+  const [clickData, setClickData] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [clickCode, setClickCode] = useState();
+  // const [clickLocation, setClickLocation] = useState();
+  function propCode() {
+    const found = tideTimeCode.find((code) => code.name === place);
+    setClickCode(found?.code ?? "");
   }
-  useEffect(()=>{
-    propCode()
-  },[place])
+
+  useEffect(() => {
+    propCode();
+  }, [place]);
   useEffect(() => {
     async function load() {
       if (!place) return;
@@ -42,11 +44,11 @@ function TideCheck() {
         pageNo++;
       }
       const hasDate = new Set();
-      const oneDate = all.filter((item)=>{
+      const oneDate = all.filter((item) => {
         const firstDate = !hasDate.has(item.predcYmd);
         hasDate.add(item.predcYmd);
         return firstDate;
-      })
+      });
       setRows(oneDate);
     }
     load();
@@ -75,21 +77,29 @@ function TideCheck() {
                 <span>{item.minWtem}°C</span>
               </p>
               <p>
-                <span>{item.maxArtmp}</span>
-                <span>{item.minArtmp}</span>
+                <span>{item.maxArtmp}°C</span>
+                <span>{item.minArtmp}°C</span>
               </p>
-              <button onClick={()=>{
-                setOpenModal(true)
-                setClickData(item)
-
-              }}>
+              <button
+                onClick={() => {
+                  setOpenModal(true);
+                  setClickData(item);
+                }}
+              >
                 <span className={styles.modalBtn}>자세히 보기</span>
               </button>
             </div>
           </div>
         );
       })}
-      {openModal && <TideModal setOpenModal={setOpenModal} clickData={clickData} clickCode={clickCode}/>}
+      {openModal && (
+        <TideModal
+          setOpenModal={setOpenModal}
+          clickData={clickData}
+          clickCode={clickCode}
+          place={place}
+        />
+      )}
     </div>
   );
 }

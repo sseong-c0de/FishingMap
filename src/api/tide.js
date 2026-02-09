@@ -24,30 +24,62 @@ export async function fetchTide(pageNo = "1") {
     return { raw: text };
   }
 }
-export async function fetchTideTime(obsCode = "DT_0018"){
-  const baseUrl = "/data-go/1192136/tideFcstHghLw/GetTideFcstHghLwApiService"
+export async function fetchTideTime(obsCode = "DT_0018") {
+  const baseUrl = "/data-go/1192136/tideFcstHghLw/GetTideFcstHghLwApiService";
   const params = {
     serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
-    type:"json",
-    exclude:"lat,lot",
+    type: "json",
+    exclude: "lat,lot",
     obsCode,
-    numOfRows:"8"
-  }
-  const url = new URL(baseUrl,window.location.origin);
-  Object.entries(params).forEach(([key,value])=>{
-    if(value!== undefined && value !== null && value !==""){
-      url.searchParams.set(key,String(value));
+    numOfRows: "30",
+  };
+  const url = new URL(baseUrl, window.location.origin);
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") {
+      url.searchParams.set(key, String(value));
     }
-  })
+  });
   const response = await fetch(url.toString());
   const text = await response.text();
-  try{
-    const data = JSON.parse(text)
+  try {
+    const data = JSON.parse(text);
     return data;
-  }catch{
-    return{raw:text}
+  } catch {
+    return { raw: text };
   }
 }
+export async function fetchSunTime(location, date) {
+  const baseUrl =
+    "/data-go/B090041/openapi/service/RiseSetInfoService/getAreaRiseSetInfo";
+  const params = {
+    serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
+    location: location,
+    locdate: date,
+  };
+  const url = new URL(baseUrl, window.location.origin);
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") {
+      url.searchParams.set(key, String(value));
+    }
+  });
+  const response = await fetch(url.toString());
+  const text = await response.text();
+  try {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(text, "text/xml");
+    const parseError = xmlDoc.querySelector("parsererror");
+    if (parseError) return { raw: text };
+    const items = xmlDoc.getElementsByTagName("item");
+    const result = Array.from(items).map((item) => ({
+      sunrise: item.getElementsByTagName("sunrise")[0]?.textContent,
+      sunset: item.getElementsByTagName("sunset")[0]?.textContent,
+    }));
+    return { body: { items: result } };
+  } catch {
+    return { raw: text };
+  }
+}
+
 function formatDate(d) {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
