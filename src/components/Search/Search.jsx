@@ -15,7 +15,7 @@ function Search({ placeList = [] }) {
         <input
           type="search"
           id="search"
-          placeholder="어디로 갈까요?"
+          placeholder="오늘의 낚시 점수를 확인해보세요!"
           className={styles.searchInput}
           onChange={(e) => {
             setInputKeyword(e.target.value);
