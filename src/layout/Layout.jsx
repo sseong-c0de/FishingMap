@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";
 import BackButton from "../components/BackButton/BackButton";
 import Drawer from "../components/Drawer/Drawer";
 import Header from "../components/Header/Header";
@@ -12,14 +12,19 @@ import TideCheckSearch from "../pages/TideCheckSearch/TideCheckSearch";
 
 function Layout() {
   const pageTitle = {
-    "/":"홈",
-    "/tide":"바다낚시 점수",
-    "/tideCheck":"물때 정보",
-    "/ban":"금어기 정보",
-    "/":"홈",
-    }
-    const location = useLocation();
-    const pageTitles = pageTitle[location.pathname] ?? "제목";
+    "/": "홈",
+    "/tide": "바다낚시 점수",
+    "/tide/score": "물때 점수",
+    "/tideCheck": "물때 정보",
+    "/ban": "금어기 정보",
+  };
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const place = searchParams.get("place");
+  let pageTitles = pageTitle[location.pathname] ?? "제목";
+  if (location.pathname === "/tide/score" && place) {
+    pageTitles = `${decodeURIComponent(place)} 점수`;
+  }
   return (
     <>
       <Header pageTitles={pageTitles}></Header>

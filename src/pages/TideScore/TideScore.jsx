@@ -86,7 +86,7 @@ function TideCheck() {
                   setClickData(item);
                 }}
               >
-                <span className={styles.modalBtn}>자세히 보기</span>
+                <span className={styles.modalBtn}>더 보기</span>
               </button>
             </div>
           </div>

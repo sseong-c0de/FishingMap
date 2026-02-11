@@ -19,7 +19,7 @@ function Home() {
           <span>물때 정보</span>
         </Link>
         <Link to className={styles.linkCard}>
-          <span>즐겨찾기</span>
+          <span>낚시 장소</span>
         </Link>
         <Link to="ban" className={styles.linkCard}>
           <span>금어기 정보</span>

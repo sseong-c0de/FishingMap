@@ -2,14 +2,22 @@
   margin-top: 10px;
   width: 100%;
   .container {
+    position: relative;
     display: flex;
     width: 91.11%;
+    max-width: 328px;
     height: 50px;
     margin: 0 auto;
     justify-content: space-between;
     align-items: center;
     color: #fff;
+    .back {
+      min-width: 40px;
+    }
     .titleWrap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 24px;
       font-weight: bold;
     }
