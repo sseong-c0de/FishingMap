@@ -1,5 +1,7 @@
+const API_BASE = import.meta.env.VITE_API_BASE ?? "/data-go";
+
 export async function fetchTide(pageNo = "1") {
-  const baseUrl = "/data-go/1192136/fcstFishingv2/GetFcstFishingApiServicev2";
+  const baseUrl = `${API_BASE}/1192136/fcstFishingv2/GetFcstFishingApiServicev2`;
   const params = {
     serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
     type: "json",
@@ -25,7 +27,7 @@ export async function fetchTide(pageNo = "1") {
   }
 }
 export async function fetchTideTime(obsCode = "DT_0018") {
-  const baseUrl = "/data-go/1192136/tideFcstHghLw/GetTideFcstHghLwApiService";
+  const baseUrl = `${API_BASE}/1192136/tideFcstHghLw/GetTideFcstHghLwApiService`;
   const params = {
     serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
     type: "json",
@@ -49,8 +51,7 @@ export async function fetchTideTime(obsCode = "DT_0018") {
   }
 }
 export async function fetchSunTime(location, date) {
-  const baseUrl =
-    "/data-go/B090041/openapi/service/RiseSetInfoService/getAreaRiseSetInfo";
+  const baseUrl = `${API_BASE}/B090041/openapi/service/RiseSetInfoService/getAreaRiseSetInfo`;
   const params = {
     serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
     location: location,

@@ -24,7 +24,6 @@ function CheckSearch() {
       try{
         const result = await fetchTideTime(clickCode);
         setClickTime(result)
-        console.log("결과",result)
       }catch(err){
         console.log("실패",err)
       }

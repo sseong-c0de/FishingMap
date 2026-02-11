@@ -13,7 +13,13 @@
       font-size: 24px;
       font-weight: bold;
     }
-    .openBtn {
+    .closeBtn{
+      width: 30px;
+      color:#fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .openBtn{
       width: 30px;
       height: 30px;
       cursor: pointer;
@@ -26,6 +32,7 @@
         height: 5px;
         background: #d9d9d9;
       }
+
     }
   }
 }

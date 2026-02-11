@@ -16,7 +16,7 @@ function Home() {
           <span>바다낚시 점수</span>
         </Link>
         <Link to="tideCheck" className={styles.linkCard}>
-          <span>물때 확인</span>
+          <span>물때 정보</span>
         </Link>
         <Link to className={styles.linkCard}>
           <span>즐겨찾기</span>

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import BackButton from "../components/BackButton/BackButton";
 import Drawer from "../components/Drawer/Drawer";
 import Header from "../components/Header/Header";
@@ -11,17 +11,18 @@ import TideCheckSearch from "../pages/TideCheckSearch/TideCheckSearch";
 // import { fetchTide } from "../api/tide";
 
 function Layout() {
-  // const clicklog = async () => {
-  //   try {
-  //     const result = await fetchTide();
-  //     console.log("최종 result", result);
-  //   } catch (e) {
-  //     console.log("에러", e);
-  //   }
-  // };
+  const pageTitle = {
+    "/":"홈",
+    "/tide":"바다낚시 점수",
+    "/tideCheck":"물때 정보",
+    "/ban":"금어기 정보",
+    "/":"홈",
+    }
+    const location = useLocation();
+    const pageTitles = pageTitle[location.pathname] ?? "제목";
   return (
     <>
-      <Header></Header>
+      <Header pageTitles={pageTitles}></Header>
       {/* <Drawer></Drawer> */}
       <main className={styles.appMain}>
         <Routes>
