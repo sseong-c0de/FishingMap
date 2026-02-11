@@ -1,13 +1,13 @@
 .modal {
   width: 91.11%;
-  height: 700px;
+  height: 500px;
   position: fixed;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #3a3a3a;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: scroll;
   .container {
     padding: 20px;
     .h2Wrap {
