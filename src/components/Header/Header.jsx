@@ -36,7 +36,10 @@ function Header({ pageTitles = "메인제목" }) {
 
         </button>}
       </div>
+      <div className={styles.drawerBox}>
       {toggle && <Drawer />}
+      </div>
+      
     </header>
 
   );

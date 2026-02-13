@@ -19,7 +19,6 @@ function CheckSearch() {
   //   console.log(filterPlace)
   // },[inputKeyword])
   useEffect(()=>{
-    console.log(clickCode)
     async function load(){
       try{
         const result = await fetchTideTime(clickCode);

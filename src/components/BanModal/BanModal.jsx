@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import styles from "./BanModal.module.scss";
 function BanModal({ setOpenModal, banList = [], selectMonth }) {
-  useEffect(() => {
-    console.log(banList);
-  }, []);
   return (
     <div className={styles.modal}>
       <div className={styles.container}>

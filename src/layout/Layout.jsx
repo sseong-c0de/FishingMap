@@ -8,7 +8,8 @@ import TideScore from "../pages/TideScore/TideScore";
 import styles from "./Layout.module.scss";
 import TideSearch from "../pages/TideSearch/TideSearch";
 import TideCheckSearch from "../pages/TideCheckSearch/TideCheckSearch";
-// import { fetchTide } from "../api/tide";
+import Sunset from "../pages/Sunset/Sunset";
+
 
 function Layout() {
   const pageTitle = {
@@ -17,6 +18,7 @@ function Layout() {
     "/tide/score": "물때 점수",
     "/tideCheck": "물때 정보",
     "/ban": "금어기 정보",
+    "/sunset": "일출일몰 정보",
   };
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -28,7 +30,6 @@ function Layout() {
   return (
     <>
       <Header pageTitles={pageTitles}></Header>
-      {/* <Drawer></Drawer> */}
       <main className={styles.appMain}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -36,16 +37,8 @@ function Layout() {
           <Route path="/tide/score" element={<TideScore />} />
           <Route path="/ban" element={<BanSearch />} />
           <Route path="/tideCheck" element={<TideCheckSearch />} />
+          <Route path="/sunset" element={<Sunset />} />
         </Routes>
-        {/* <button
-          type="button"
-          onClick={() => {
-            clicklog();
-          }}
-        >
-          11111
-        </button> */}
-        {/* <TideCheck></TideCheck> */}
       </main>
     </>
   );

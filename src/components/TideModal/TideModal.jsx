@@ -15,6 +15,7 @@ function TideModal({ setOpenModal, clickData, clickCode, place }) {
         const result2 = await fetchSunTime(place, sundate);
         setSunTime(result2);
         setTideHighLow(result);
+
       } catch (err) {
         console.log("실패", err);
       }
@@ -111,7 +112,7 @@ function TideModal({ setOpenModal, clickData, clickCode, place }) {
                   <p className={styles.sunTime}>
                     <span className={styles.sunny}>
                       일몰:{" "}
-                      {sunTime?.body?.items?.[0]?.sunrise
+                      {sunTime?.body?.items?.[0]?.sunset
                         ? `${sunTime.body.items[0].sunset.slice(
                             0,
                             2
