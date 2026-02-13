@@ -102,6 +102,11 @@ section {
 }
 body {
   line-height: 1;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 ol,
 ul {
@@ -132,6 +137,11 @@ a {
 html {
   font-size: 62.5%;
   background-color: #2b2b2b;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
 }
 button {
   display: block;
