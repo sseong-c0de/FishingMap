@@ -46,6 +46,8 @@ function SunSearch() {
                             setInputDate(e.target.value)
                         }}
                         ></input>
+                        <span className={styles.dayBtn}>←날짜버튼</span>
+                        
                 <div className={styles.recentSearch}></div>
                 <div className={styles.resultBox}>
                     {filterPlace.map((place) =>
