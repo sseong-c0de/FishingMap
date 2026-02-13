@@ -7,28 +7,12 @@
       font-size: 14px;
       margin-bottom: 30px;
     }
-    .dateWrap {
-      position: relative;
+    .searchDate{
       width: 150px;
       height: 50px;
       border-radius: 20px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .dateLabel {
-      font-size: 14px;
-      color: #333;
-      pointer-events: none;
-    }
-    .searchDate {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
+      text-align: center;
+      font-size: 16px;
     }
     .resultBox {
       width: 100%;

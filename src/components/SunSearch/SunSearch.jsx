@@ -38,19 +38,14 @@ function SunSearch() {
                         setInputKeyword(e.target.value);
                     }}
                 ></input>
-                <div className={styles.dateWrap}>
-                  <span className={styles.dateLabel}>
-                    {inputDate ? `${inputDate.slice(0, 4)}.${inputDate.slice(5, 7)}.${inputDate.slice(8, 10)}` : "날짜 선택"}
-                  </span>
-                  <input
-                    type="date"
-                    id="dateSearch"
-                    className={styles.searchDate}
-                    value={inputDate}
-                    onChange={(e) => setInputDate(e.target.value)}
-                    aria-label="날짜 선택"
-                  />
-                </div>
+                <input type="date"
+                        id="dateSearch"
+                        placeholder="날짜를 입력하세요"
+                        className={styles.searchDate}
+                        onChange={(e)=>{
+                            setInputDate(e.target.value)
+                        }}
+                        ></input>
                 <div className={styles.recentSearch}></div>
                 <div className={styles.resultBox}>
                     {filterPlace.map((place) =>
