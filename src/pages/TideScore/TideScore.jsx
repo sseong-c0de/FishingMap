@@ -5,13 +5,17 @@ import { useEffect, useState } from "react";
 import { fetchTide, nowDate, endDate } from "../../api/tide";
 import tideTimeCode from "../../data/tideTimeCode";
 import TideModal from "../../components/TideModal/TideModal";
+import GuideModal from "../../components/GuideModal/GuideModal";
+
 function TideCheck() {
   const [params] = useSearchParams();
   const place = params.get("place");
   const [rows, setRows] = useState([]);
   const [clickData, setClickData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [openGuide, setOpenGuide] = useState(false);
   const [clickCode, setClickCode] = useState();
+  const [dataType,setDataType] = useState(null)
   // const [clickLocation, setClickLocation] = useState();
   function propCode() {
     const found = tideTimeCode.find((code) => code.name === place);
@@ -60,7 +64,7 @@ function TideCheck() {
           <div className={styles.row} key={id}>
             <div className={styles.rowHeader}>
               <span>날짜</span>
-              <span>물때 점수</span>
+              <span>낚시 점수</span>
               <span>수온</span>
               <span>기온</span>
             </div>
@@ -69,8 +73,8 @@ function TideCheck() {
                 <span>{item.predcYmd.slice(5, 10)}</span>
               </p>
               <p>
-                <span>{item.tdlvHrCn}</span>
-                <span>{item.tdlvHrScr}점</span>
+                <span>{String(item.lastScr).slice(0, 2)}점</span>
+                <span>{item.totalIndex}</span>
               </p>
               <p>
                 <span>{item.maxWtem}°C</span>
@@ -98,6 +102,16 @@ function TideCheck() {
           clickData={clickData}
           clickCode={clickCode}
           place={place}
+        />
+      )}
+      <button className={styles.guideBtn} onClick={() => {
+        setOpenGuide(true)
+        setDataType("tide")
+      }}>?</button>
+      {openGuide && (
+        <GuideModal
+          setOpenModal={setOpenGuide}
+          dataType={dataType}
         />
       )}
     </div>

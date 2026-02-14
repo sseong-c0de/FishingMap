@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import Search from "../../components/Search/Search";
 import styles from "./Home.module.scss";
+import GuideModal from "../../components/GuideModal/GuideModal";
+import { useEffect, useState } from "react";
+import guideData from "../../data/guideData";
+
 function Home() {
+  const [dataType,setDataType] = useState(null)
+  const [openModal,setOpenModal] = useState(false)
+  
   return (
     <div className={styles.container}>
       <div className={styles.h2Wrap}>
@@ -22,6 +29,11 @@ function Home() {
           <span>금어기 정보</span>
         </Link>
       </div>
+      <button className={styles.guideBtn} onClick={()=>{
+        setOpenModal(true)
+        setDataType("home")
+      }}>?</button>
+      {openModal && <GuideModal setOpenModal={setOpenModal} dataType={dataType}></GuideModal>}
     </div>
   );
 }

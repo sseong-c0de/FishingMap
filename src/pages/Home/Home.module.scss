@@ -1,6 +1,7 @@
 .container {
   margin-top: 50px;
   width: 100%;
+  position: relative;
   .h2Wrap {
     font-size: 28px;
     .desc {
@@ -34,5 +35,16 @@
       border-radius: 20px;
       cursor: pointer;
     }
+  }
+  .guideBtn{
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    position: absolute;
+    right: 0;
+    bottom: -100px;
+    cursor: pointer;
   }
 }

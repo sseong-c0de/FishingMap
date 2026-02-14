@@ -8,7 +8,7 @@ export async function fetchTide(pageNo = "1") {
     gubun: "갯바위",
     numOfRows: "300",
     pageNo,
-    exclude: "lat,lot",
+    // exclude: "lat,lot",
   };
 
   const url = new URL(baseUrl, window.location.origin);

@@ -137,7 +137,11 @@ function TideModal({ setOpenModal, clickData, clickCode, place }) {
               {data.totalIndex}
             </p>
             <p>
-              <span className={styles.tideLabel}>바다낚시 점수</span> {data.lastScr}
+              <span className={styles.tideLabel}>물때</span>{" "}
+              {data.tdlvHrCn}
+            </p>
+            <p>
+              <span className={styles.tideLabel}>바다낚시 점수</span> {data.lastScr}점
             </p>
             <p>
               <span className={styles.tideLabel}>최고 수온</span> {data.maxWtem}
