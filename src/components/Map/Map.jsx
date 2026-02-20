@@ -9,9 +9,16 @@ function Map({lat,lot}) {
     const container = mapRef.current;
     if (!container) return;
 
+    let retryCount = 0;
+    const RETRY_INTERVAL = 500;
+    const WARN_EVERY = 20; // 20번마다 한 번만 경고 (약 10초)
+
     const initMap = () => {
       if (!window.kakao?.maps) {
-        console.warn("카카오 SDK 아직 로드 안됨, 재시도 중...");
+        retryCount++;
+        if (retryCount === 1 || retryCount % WARN_EVERY === 0) {
+          console.warn("카카오 SDK 로드 대기 중...");
+        }
         return false;
       }
 
@@ -42,7 +49,7 @@ function Map({lat,lot}) {
     if (!initMap()) {
       const timer = setInterval(() => {
         if (initMap()) clearInterval(timer);
-      }, 100);
+      }, RETRY_INTERVAL);
       return () => clearInterval(timer);
     }
 

@@ -32,6 +32,7 @@ jobs:
         run: npm run build:gh
         env:
           VITE_DATA_GO_KR_KEY: ${{ secrets.VITE_DATA_GO_KR_KEY }}
+          VITE_KAKAO_MAP_KEY: ${{ secrets.VITE_KAKAO_MAP_KEY }}
           VITE_API_BASE: https://apis.data.go.kr
           NODE_ENV: production
 
