@@ -4,6 +4,7 @@ import styles from "./Home.module.scss";
 import GuideModal from "../../components/GuideModal/GuideModal";
 import { useEffect, useState } from "react";
 import guideData from "../../data/guideData";
+import Map from "../../components/Map/Map";
 
 function Home() {
   const [dataType,setDataType] = useState(null)

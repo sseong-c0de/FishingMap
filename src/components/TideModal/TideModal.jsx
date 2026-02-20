@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./TideModal.module.scss";
 import { fetchSunTime, fetchTideTime } from "../../api/tide";
+import Map from "../Map/Map";
 function TideModal({ setOpenModal, clickData, clickCode, place }) {
   const [data, setData] = useState(clickData);
   const [highLowData, setHighLowData] = useState([]);
@@ -123,6 +124,9 @@ function TideModal({ setOpenModal, clickData, clickCode, place }) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className={styles.tideMap}>
+            <Map lat={data.lat} lot={data.lot}></Map>
           </div>
           <div className={styles.tideDetail}>
             <p>
