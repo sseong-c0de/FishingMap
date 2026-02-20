@@ -29,7 +29,9 @@ function GuideModal({ setOpenModal, dataType }) {
                             <SwiperSlide key={key}>
                                 <div className={styles.guideContainer}>
                                     <div className={styles.btnImg}>
-                                        <img src={item.imgSrc} alt={item.imgAlt}></img>
+                                        {item.title}
+                                        {/* <img src={item.imgSrc} alt={item.imgAlt}></img> */}
+                                        {/* <button>버튼이미지</button> */}
                                     </div>
                                     <div className={styles.imgGuide}>
                                         <p>{item.title}</p>

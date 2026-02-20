@@ -50,7 +50,12 @@
             .btnImg{
                 width: 100px;
                 height: 100px;
-                border:  1px solid #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 20px;
+                background: #d9d9d9;
+                color: #000;
               }
             .imgGuide{
                 width: 50%;
