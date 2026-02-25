@@ -64,7 +64,7 @@ function TideCheck() {
           <div className={styles.row} key={id}>
             <div className={styles.rowHeader}>
               <span>날짜</span>
-              <span>낚시 점수</span>
+              <span>낚시 지수</span>
               <span>수온</span>
               <span>기온</span>
             </div>
@@ -73,7 +73,7 @@ function TideCheck() {
                 <span>{item.predcYmd.slice(5, 10)}</span>
               </p>
               <p>
-                <span>{String(item.lastScr).slice(0, 2)}점</span>
+                {/* <span>{String(item.lastScr).slice(0, 2)}점</span> */}
                 <span>{item.totalIndex}</span>
               </p>
               <p>
