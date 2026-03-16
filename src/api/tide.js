@@ -5,7 +5,7 @@ export async function fetchTide(pageNo = "1") {
   const params = {
     serviceKey: import.meta.env.VITE_DATA_GO_KR_KEY,
     type: "json",
-    gubun: "SF",
+    gubun: "갯바위",
     numOfRows: "300",
     pageNo,
     // exclude: "lat,lot",
