@@ -1,16 +1,72 @@
-# React + Vite
+# 🎣 FishingMap
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+낚시점수, 물때 시간, 일출/일몰 시간 API를 활용해
+지역 기반 낚시 정보를 한눈에 확인할 수 있도록 제작한 React기반 웹 애플리케이션입니다.
 
-Currently, two official plugins are available:
+사용자가 원하는 지역을 검색하면 관련 데이터를 빠르게 확인할 수 있도록 직관적인
+UI와 데이터 중심으로 구현했습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🔗 배포 링크
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+https://sseong-c0de.github.io/FishingMap/
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 기술 스택
+
+- React
+- JavaScript (ES6+)
+- Sass (SCSS)
+- Vite
+
+---
+
+## ✨ 주요 기능
+
+- 지역 기반 낚시 포인트 탐색 기능
+- 포인트 지도 표시기능
+- API 데이터를 활용한 일출/일몰 시간 탐색 가능
+- 물때(조석) 탐색 가능
+- 금어기 여부 확인 가능
+
+---
+
+## 🙋‍♂️ 담당 역할
+
+- 전체 UI 설계 및 마크업 구현
+- React 컴포넌트 구조 설계 및 분리
+- 상태 관리 및 데이터 흐름 구성
+- Sass를 활용한 스타일 구조화
+- 외부 API연동 및 데이터를 가공 후 UI에 적용
+
+---
+
+## 🚀 트러블슈팅
+
+### 문제
+
+외부API 요청시 CORS정책에 의해 요청이 차단되는 문제가 발생헀습니다.
+
+### 원인
+
+클라이언트와 API 서버의 출처가 서로 달라서 서버에서 해당 요청을 허용하지 않아 발생한
+문제였습니다.
+
+### 해결
+
+개발 환경에서는 Vite의 Proxy 설정을 활용하여 API 요청을 우회하도록 구성했습니다.
+
+### 결과
+
+CORS에러 없이 API 데이터를 정상적으로 받아올 수 있게 되었고,
+정상적으로 데이터표시가 가능하게 되었습니다.
+
+---
+
+## 📌 개선 예정
+
+- 즐겨찾는 포인트 저장기능(로컬스트리지 활용)
+- 메인 UI/UX 개선
+- 로딩상태 및 에러 상태 UI처리
